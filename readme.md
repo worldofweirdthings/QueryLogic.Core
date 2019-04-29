@@ -12,13 +12,13 @@ This is the idea behind QueryLogic. Essentially, it’s a fast, lightweight data
 
 To create a call to an existing stored procedure, use the QueryUtilityclass which contains various methods for working with the abstracted data handled by QueryLogic. You need to know the name of the stored procedure being accessed, and a method to get the connection string in your configuration file for the database where this procedure is compiled. If you don’t know this name and don’t provide it, the first available database connection will be used. The code will look as follows...
 
-```
+```csharp
 var command = QueryUtility.NewCommand("[command name]", "[database connection]");
 ```
 
 To add parameters to the procedure call, you will invoke extension methods on the command object created earlier, one for a default, in parameter, and one for a specified out parameter without an "@" which will be created internally when QueryLogic resolves the correct database object...
 
-```
+```csharp
 command.AddParameter("[parameter name]", [object]);
 command.OutParameter("[out parameter name]", [default object]);
 ```
@@ -44,7 +44,7 @@ Inside of each Row object is an internal map which can be read and assigned usin
 Given these prerequisites, a full stored procedure call to retrieve an object and return it for further use
 will involve the following code...
 
-```
+```csharp
 public IEnumerable<BasicFoo> GetFoo(Guid basicFooID)
 {
     var queryBuilder = new QueryBuilder();
@@ -69,7 +69,7 @@ The second reason is for this approach is the encouragement to abstract finite b
 
 However, they do encourage programmers to write more efficient code which is easier and faster to execute if they are mindful of the tasks they’re putting into the expressions. So while it is possible to create a normal foreach loop with a Rows object and scan each Row to retrieve primitive values for entities, it should be avoided if possible unless the results and assignment logic need to be debugged before being wrapped back into a lambda expression. This is why the code recommended for handling multi-select stored procedures looks as follows...
 
-```
+```csharp
 public IEnumerable<ComplexFoo> GetFoo(Guid complexFooID)
 {
     var queryBuilder = new QueryBuilder();
@@ -129,6 +129,7 @@ method                          | description                                   
 
 We will deal with these methods in more detail when covering parallelization during queries. Most of the complex helpers only come into play when retrieving objects rather than performing non-queries. QueryLogic allows for very simple code when creating, updating, and deleting data. If we wanted to save one of our objects from an earlier example and retrieve the new ID we created in the stored procedure for use elsewhere in the application, the code would look as follows...
 
+```csharp
 public int SaveFoo(Foo foo, Guid userID)
 {
     var queryBuilder = new QueryBuilder();
@@ -142,10 +143,11 @@ public int SaveFoo(Foo foo, Guid userID)
     
     return QueryUtility.GetGuidFromRow(output, "newFooID");
 }
+```
 
 Note that there’s no limitation to how many out parameters can be added to a QueryLogic command and all returned values are indexed with the parameters’ names. If your procedure does not return a parameterbut simply deletes an entity or a row, you can still check the results by calling the constant output parameter "rows_affected" to make sure the command was executed as expected. The code would look similarto the previous example with the exception of the string constant being read...
 
-```
+```csharp
 public int DeleteFoo(Guid fooID)
 {
     var queryBuilder = new QueryBuilder();
@@ -161,7 +163,7 @@ public int DeleteFoo(Guid fooID)
 
 Again, if necessary, the "rows_affected" parameter is always present on a non-query command even if out parameters have been added. This is provided for additional validation purposes even though they should not be necessary and may actually cause false validation in a web environment where it’s very possible for an entity to be deleted milliseconds before your call to the procedure clears. The entity may be gone as is expected and desired, but it will appear as if it was never actually present. QueryLogic also supports inline SQL statements and the same methods as for stored procedures will be available. In fact, internally, the inline statements and stored procedures aren’t treated differently aside from a command object flag for the database to which it’s talking so the database engine knows how to properly execute the command it’s going to get. This is because then the engine makes the call, it has to compile it with different syntax when executing the code. To use inline SQL instead of a stored procedure, simply call the NewInlineSql method and use the appropriate QueryBuilder call like so...
 
-```
+```csharp
 var queryBuilder = new QueryBuilder();
 var sql = QueryUtility.NewInlineSql("select f.fooID, f.fooName from dbFoo f", "FooDB");
 var rows = queryBuilder.QueryData(sql);
@@ -173,7 +175,7 @@ You can then proceed to map the retrieved rows to individual objects using the p
 
 Enterprise applications are well known for large, complex objects which can be very computationally expensive to retrieve. This is why QueryLogic has a utility method for smart parallelization and can be leveraged with the proper setup. Please note that this applies only to trivial parallelization as several other .NET libraries would have to be used to maintain concurrency and avoid race conditions, i.e. the built in ConcurrentBag<T> class under the System.Collections.Concurrent namespace. Since these are intended for fine-tuned, high performance, high-volume algorithms, and will work best when retrieving over 1,000 entities, they should generally be discouraged from use in basic data retrieval. Paging would turn their use into an unnecessary burden that will compromise performance. Instead, consider the code below which retrieves and maps data to a complex object...
 
-```
+```csharp
 public IEnumerable<Customer> GetCustomers(IEnumerable<Guid> customerIDs)
 {
     var actions = new List<Action>();
@@ -255,7 +257,7 @@ public IEnumerable<Customer> GetCustomers(IEnumerable<Guid> customerIDs)
 
 In this example, a customer object had three many to many relationships which were independent form each other and could have been mapped simultaneously. To take advantage of that fact, we created the collection of Action instances to which we added our lambdas mapping the children to their parent, just as we did in an earlier example. However, because we have multiple relationships to map, we invoke the `TryParallelize();` extension method provided by QueryLogic which considers the number of lambdas in the collection and whether it makes sense to run them sequentially or open a separate thread to run each one. This avoids creating extra threads if the mapping is conditional, to be ran only when a specific flag requesting it is passed in, and just one lambda ends up being added to the collection. This allows for more complex parallelization when dealing with interop scenarios, such as requests from a third party using an API which requests a manifest of what parts of an object to return in the response such as...
 
-```
+```csharp
 public IEnumerable<Customer> GetCustomers(IEnumerable<Guid> customerIDs, string[] manifest)
 {
     var actions = new Dictionary<string, Action>();
@@ -340,7 +342,7 @@ Code like this allows you to create and maintain a single instance of an entity�
 
 In an alternative scenario, in which only the IDs of the child object were returned by the stored procedure and had to be retrieved in full from a repository (a class responsible for mapping database rows to application entities in a typical enterprise design pattern), we can leverage the `ComplexM2M<T>` class’ utility methods as follows...
 
-```
+```csharp
 actions.Add(CustomerManifest.PhoneNos, () =>
 {
     var phones = new ComplexM2M<PhoneNumber>();
