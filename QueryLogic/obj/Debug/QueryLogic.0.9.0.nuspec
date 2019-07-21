@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>QueryLogic</id>
+    <version>0.9.0</version>
+    <authors>Greg Fish</authors>
+    <owners>Greg Fish</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Data access abstractor to quickly and efficiently create and handle disconnected data sets, as well as execute commands.</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp2.2">
+        <dependency id="System.Data.SqlClient" version="4.6.0" exclude="Build,Analyzers" />
+        <dependency id="System.Threading.Tasks.Parallel" version="4.3.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/bin/Debug/netcoreapp2.2/QueryLogic.dll" target="lib/netcoreapp2.2/QueryLogic.dll" />
+    <file src="/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/bin/Debug/netcoreapp2.2/QueryLogic.xml" target="lib/netcoreapp2.2/QueryLogic.xml" />
+  </files>
+</package>

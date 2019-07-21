@@ -35,6 +35,13 @@ namespace QueryLogic
             }
         }
 
+        /// <summary>
+        /// Adds a custom type parameter to a database command
+        /// </summary>
+        /// <param name="command">Current database command</param>
+        /// <param name="parameterName">Name of the parameter</param>
+        /// <param name="parameterValue">Typed parameter object</param>
+        /// <exception cref="QueryException"></exception>
         public static void TypeParameter(this IDbCommand command, string parameterName, object parameterValue)
         {
             if (command is SqlCommand)

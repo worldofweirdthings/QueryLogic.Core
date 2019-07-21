@@ -1,0 +1,10 @@
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/bin/Debug/netcoreapp3.0/QueryLogic.deps.json
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/bin/Debug/netcoreapp3.0/QueryLogic.dll
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/bin/Debug/netcoreapp3.0/QueryLogic.pdb
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/bin/Debug/netcoreapp3.0/QueryLogic.xml
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/obj/Debug/netcoreapp3.0/QueryLogic.csprojAssemblyReference.cache
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/obj/Debug/netcoreapp3.0/QueryLogic.csproj.CoreCompileInputs.cache
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/obj/Debug/netcoreapp3.0/QueryLogic.AssemblyInfoInputs.cache
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/obj/Debug/netcoreapp3.0/QueryLogic.AssemblyInfo.cs
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/obj/Debug/netcoreapp3.0/QueryLogic.dll
+/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/obj/Debug/netcoreapp3.0/QueryLogic.pdb

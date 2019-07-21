@@ -5,7 +5,7 @@ using QueryLogic.Reference.Constants;
 
 namespace QueryLogic.Core.Reference
 {
-    public static class DataResolver
+    internal static class DataResolver
     {
         private static readonly Dictionary<string, Action<SqlDataReader, Row, string, int>> _map = new Dictionary <string, Action<SqlDataReader, Row, string, int>>
         {

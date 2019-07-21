@@ -95,15 +95,9 @@ namespace QueryLogic
 
                     using (var reader = command.ExecuteReader())
                     {
-                        while (reader.NextResult())
-                        {
-                            var metadata = setResultSchema(reader);
-                            var rows = new Rows();
-
-                            while (reader.Read()) getRowData(reader, metadata, rows);
-
-                            dataMap.Add(rows);
-                        }
+                        addRowData(reader, dataMap);
+                        
+                        while (reader.NextResult()) addRowData(reader, dataMap);
                     }
                 }
             }
@@ -131,15 +125,9 @@ namespace QueryLogic
 
                 using (var reader = await command.ExecuteReaderAsync(CommandBehavior.CloseConnection))
                 {
-                    while (await reader.NextResultAsync())
-                    {
-                        var metadata = setResultSchema(reader);
-                        var rows = new Rows();
-
-                        while (await reader.ReadAsync()) getRowData(reader, metadata, rows);
-
-                        dataMap.Add(rows);
-                    }
+                    addRowDataAsync(reader, dataMap);
+                    
+                    while (await reader.NextResultAsync()) addRowData(reader, dataMap);
                 }
             }
             catch (Exception ex)
@@ -211,6 +199,29 @@ namespace QueryLogic
 
         #region Helper Methods
 
+        private static void addRowData(SqlDataReader reader, DataMap dataMap)
+        {
+            var metadata = setResultSchema(reader);
+            var rows = new Rows();
+
+            while (reader.Read()) getRowData(reader, metadata, rows);
+
+            dataMap.Add(rows);
+        }
+
+        private static async void addRowDataAsync(SqlDataReader reader, DataMap dataMap)
+        {
+            while (await reader.NextResultAsync())
+            {
+                var metadata = setResultSchema(reader);
+                var rows = new Rows();
+
+                while (await reader.ReadAsync()) getRowData(reader, metadata, rows);
+
+                dataMap.Add(rows);
+            }
+        }
+        
         private static REF.Metadata setResultSchema(DbDataReader dataReader)
         {
             var metadata = new REF.Metadata();

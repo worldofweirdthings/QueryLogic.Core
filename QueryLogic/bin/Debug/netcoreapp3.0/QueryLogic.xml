@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QueryLogic</name>
+    </assembly>
+    <members>
+        <member name="T:QueryLogic.ComplexM2M`1">
+            <summary>
+            Class representing a many-to-many relationship between complex entities
+            </summary>
+            <typeparam name="T">Data type of the child elements</typeparam>
+        </member>
+        <member name="M:QueryLogic.ComplexM2M`1.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:QueryLogic.ComplexM2M`1.AddM2M(System.Nullable{System.Guid},`0)">
+            <summary>
+            Add a many-to-many relationship
+            </summary>
+            <param name="key">Id of the parent element</param>
+            <param name="value">Id of a child element</param>
+        </member>
+        <member name="M:QueryLogic.ComplexM2M`1.AddM2M(System.Nullable{System.Int32},`0)">
+            <summary>
+            Add a many-to-many relationship
+            </summary>
+            <param name="key">Id of the parent element</param>
+            <param name="value">Id of a child element</param>
+        </member>
+        <member name="M:QueryLogic.ComplexM2M`1.Contains(System.Nullable{System.Guid})">
+            <summary>
+            Checks if a parent element id has been added 
+            to the internal relationship map
+            </summary>
+            <param name="key">Id of the parent element</param>
+            <returns>Boolean flag</returns>
+        </member>
+        <member name="M:QueryLogic.ComplexM2M`1.Contains(System.Nullable{System.Int32})">
+            <summary>
+            Checks if a parent element id has been added 
+            to the internal relationship map
+            </summary>
+            <param name="key">Id of the parent element</param>
+            <returns>Boolean flag</returns>
+        </member>
+        <member name="P:QueryLogic.ComplexM2M`1.Item(System.Nullable{System.Guid})">
+            <summary>
+            Returns all children of the parent element
+            </summary>
+            <param name="key">Id of the parent element</param>
+            <returns>Collection of child element ids</returns>
+        </member>
+        <member name="P:QueryLogic.ComplexM2M`1.Item(System.Nullable{System.Int32})">
+            <summary>
+            Returns all children of the parent element
+            </summary>
+            <param name="key">Id of the parent element</param>
+            <returns>Collection of child element ids</returns>
+        </member>
+        <member name="M:QueryLogic.ComplexM2M`1.Any">
+            <summary>
+            Checks if any relationships have been mapped
+            </summary>
+            <returns>Boolean flag</returns>
+        </member>
+        <member name="M:QueryLogic.ComplexM2M`1.Flatten">
+            <summary>
+            Flattens all child elements into a flat collection
+            </summary>
+            <returns>Flattened collection of objects</returns>
+        </member>
+        <member name="T:QueryLogic.DataMap">
+            <summary>
+            A multi-table collection of database row representations
+            </summary>
+        </member>
+        <member name="M:QueryLogic.DataMap.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:QueryLogic.DataMap.First">
+            <summary>
+            Returns the first result set in the data map
+            and does not advance the tracking of which
+            result set will be returned in the next call
+            </summary>
+            <returns>Selected data</returns>
+        </member>
+        <member name="M:QueryLogic.DataMap.Next">
+            <summary>
+            Returns the next result set in the data map and
+            advances the current collection of selected data
+            forward so the next calls returns the next result
+            set in the result collection
+            </summary>
+            <returns>Selected data</returns>
+        </member>
+        <member name="M:QueryLogic.DataMap.Previous">
+            <summary>
+            Returns the last result set in the data map and
+            rolls back the current collection of selected data
+            backward so the next calls returns the next result
+            set in the result collection
+            </summary>
+            <returns>Selected data</returns>
+        </member>
+        <member name="M:QueryLogic.DataMap.Last">
+            <summary>
+            Returns the first result set in the data map
+            and does not change the tracking of which
+            result set will be returned in the next call
+            </summary>
+            <returns>Selected data</returns>
+        </member>
+        <member name="T:QueryLogic.RowMap">
+            <summary>
+            An aliased representation of a row
+            </summary>
+        </member>
+        <member name="T:QueryLogic.Rows">
+            <summary>
+            A collection of database row representations
+            </summary>
+        </member>
+        <member name="T:QueryLogic.QueryException">
+            <summary>
+            Represents an error which occurred during the execution of a SQL command
+            </summary>
+        </member>
+        <member name="M:QueryLogic.QueryException.#ctor(System.String)">
+            <summary>
+            Creates new instance of the exception
+            </summary>
+            <param name="message">Error message</param>
+        </member>
+        <member name="M:QueryLogic.QueryException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates new instance of the exception
+            </summary>
+            <param name="message">Error message</param>
+            <param name="innerException">Exception captured and encapsulated for review</param>
+        </member>
+        <member name="T:QueryLogic.Row">
+            <summary>
+            Representation of a database row
+            </summary>
+        </member>
+        <member name="M:QueryLogic.Row.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:QueryLogic.Row.#ctor(QueryLogic.RowMap)">
+            <summary>
+            Overloaded constructor
+            </summary>
+            <param name="rowMap">Initial data row</param>
+        </member>
+        <member name="M:QueryLogic.Row.Add(System.String,System.Object)">
+            <summary>
+            Adds row cell as a key/value pair
+            </summary>
+            <param name="key">Name of database column</param>
+            <param name="data">Value of data row cell</param>
+        </member>
+        <member name="P:QueryLogic.Row.Count">
+            <summary>
+            Number of elements in row
+            </summary>
+        </member>
+        <member name="P:QueryLogic.Row.Item(System.String)">
+            <summary>
+            Returns available cell data for the 
+            provided column name
+            </summary>
+            <param name="key">Column name</param>
+        </member>
+        <member name="M:QueryLogic.Row.GetMap">
+            <summary>
+            Exports the contents of the row's internal mapper
+            as an IDictionary for ORM and other functionality
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QueryLogic.IQueryBuilder">
+            <summary>
+            Specifies methods for retrieving database rows and data sets
+            </summary>
+        </member>
+        <member name="M:QueryLogic.IQueryBuilder.QueryData(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Executes a stored procedure which returns data from a single select
+            </summary>
+            <param name="command">Database command</param>
+            <returns>Row maps with retrieved data</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="M:QueryLogic.IQueryBuilder.QueryDataAsync(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Asynchronously executes a stored procedure which returns data from a single select
+            </summary>
+            <param name="command">Database command</param>
+            <returns>Row maps with retrieved data</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception> 
+        </member>
+        <member name="M:QueryLogic.IQueryBuilder.QueryDataSet(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Executes a stored procedure which returns data from a multi-select.
+            </summary>
+            <param name="command">SQL command</param>
+            <returns>Dictionary of row maps with retrieved data</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="M:QueryLogic.IQueryBuilder.QueryDataSetAsync(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Asynchronously executes a stored procedure which returns data from a multi-select
+            </summary>
+            <param name="command">SQL command</param>
+            <returns>Dictionary of row maps with retrieved data</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="M:QueryLogic.IQueryBuilder.ModifyData(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Executes a non-query stored procedure.
+            </summary>
+            <param name="command">SQL command</param>
+            <returns>Row map with populated out parameters and/or number of affected rows</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="M:QueryLogic.IQueryBuilder.ModifyDataAsync(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Asynchronously executes a non-query stored procedure
+            </summary>
+            <param name="command">SQL command</param>
+            <returns>Row map with populated out parameters and/or number of affected rows</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="T:QueryLogic.QueryBuilder">
+            <summary>
+            Provides methods for retrieving database rows and data sets
+            </summary>
+        </member>
+        <member name="M:QueryLogic.QueryBuilder.QueryData(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Executes a stored procedure which returns data from a single select
+            </summary>
+            <param name="command">Database command</param>
+            <returns>Row maps with retrieved data</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception> 
+        </member>
+        <member name="M:QueryLogic.QueryBuilder.QueryDataAsync(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Asynchronously executes a stored procedure which returns data from a single select
+            </summary>
+            <param name="command">Database command</param>
+            <returns>Row maps with retrieved data</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception> 
+        </member>
+        <member name="M:QueryLogic.QueryBuilder.QueryDataSet(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Executes a stored procedure which returns data from a multi-select
+            </summary>
+            <param name="command">SQL command</param>
+            <returns>Dictionary of row maps with retrieved data</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="M:QueryLogic.QueryBuilder.QueryDataSetAsync(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Asynchronously executes a stored procedure which returns data from a multi-select
+            </summary>
+            <param name="command">SQL command</param>
+            <returns>Dictionary of row maps with retrieved data</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="M:QueryLogic.QueryBuilder.ModifyData(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Executes a non-query stored procedure
+            </summary>
+            <param name="command">SQL command</param>
+            <returns>Row map with populated out parameters and/or number of affected rows</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="M:QueryLogic.QueryBuilder.ModifyDataAsync(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Asynchronously executes a non-query stored procedure
+            </summary>
+            <param name="command">SQL command</param>
+            <returns>Row map with populated out parameters and/or number of affected rows</returns>
+            <exception cref="T:QueryLogic.QueryException">SQL execution error</exception>
+        </member>
+        <member name="T:QueryLogic.QueryUtility">
+            <summary>
+            Provides utilities and extensions for querying and modifying database information,
+            as well as basic handling for data extracted from database transactions
+            </summary>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.AddParameter(System.Data.IDbCommand,System.String,System.Object)">
+            <summary>
+            Adds a parameter to a database command.
+            </summary>
+            <param name="command">Current database command</param>
+            <param name="parameterName">Name of the parameter</param>
+            <param name="parameterValue">Value of the parameter</param>
+            <exception cref="T:QueryLogic.QueryException">Provided command type is not supported</exception>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.OutParameter(System.Data.IDbCommand,System.String,System.Object)">
+            <summary>
+            Adds an out parameter to a database command.
+            </summary>
+            <param name="command">Current database command</param>
+            <param name="parameterName">Name of the parameter</param>
+            <param name="defaultValue">Default value of the parameter used to infer the return type</param>
+            <exception cref="T:QueryLogic.QueryException">Provided command type is not supported</exception>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.TryParallelize(System.Collections.Generic.IEnumerable{System.Action})">
+            <summary>
+            Attempts to paralellize execution of multiple actions.
+            </summary>
+            <param name="actions">Actions to be paralellized</param>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.IsValid(System.Collections.Generic.IReadOnlyCollection{System.Data.Common.DbColumn})">
+            <summary>
+            Checks if the retrieved database table schema is not null or empty.
+            </summary>
+            <param name="schema">Current database table schema</param>
+            <returns>Table schema is valid</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.NewCommand(System.String,System.String)">
+            <summary>
+            Creates a new database command object based on the specified provider
+            </summary>
+            <param name="commandText">Name of stored procedure to be executed</param>
+            <param name="connectionString">The connection string for the target database</param>
+            <exception cref="T:QueryLogic.QueryException">No valid connection strings found</exception>
+            <returns>New SQL command</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.NewInlineSql(System.String,System.String)">
+            <summary>
+            Creates a new database command object for executing inline SQL based on 
+            the specified provider
+            </summary>
+            <param name="commandText">Name of stored procedure to be executed</param>
+            <param name="connectionString">The connection string for the target database</param>
+            <exception cref="T:QueryLogic.QueryException">No valid connection strings found</exception>
+            <returns>New SQL command</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetRowBytes(System.Data.IDataReader,System.String)">
+            <summary>
+            Retuns an array of bytes from a retrieved column
+            </summary>
+            <param name="dataReader">Current Data Reader</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Array of bytes from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.CheckIfCellIsNull(QueryLogic.Row,System.String)">
+            <summary>
+            Checks is there is data for the requested cell, meant for 
+            populating nullible properties from nullible fields
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Boolean flag</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetGenericFromRow``1(QueryLogic.Row,System.String)">
+            <summary>
+            Returns a value of a type specified by the user
+            </summary>
+            <typeparam name="T">User defined type</typeparam>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Instance of the user specified type from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetNullableFromRow``1(QueryLogic.Row,System.String)">
+            <summary>
+            Returns a nullable value of a type specified by the user
+            </summary>
+            <typeparam name="T">User defined type</typeparam>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Nullable type and value if any is found</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetByteFromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a single byte (tinyint) from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Byte from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetInt16FromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a 2 byte integer (smallint) from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Integer from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetInt32FromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a 4 byte integer from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Integer from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetInt64FromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves an 8 byte integer (bigint) from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Integer from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetGuidFromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a GUID from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>String from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetStringFromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a string from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>String from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetDecimalFromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a decimal from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Decimal from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetDateTimeFromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a timestamp (yyyy-mm-dd hh:mm:ss) from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Timestamp from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetTimeSpanFromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a time value (hh:mm:ss) from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Timestamp from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetBytecodeFromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves an array of bytes from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Array of bytes from the retrieved cell</returns>
+        </member>
+        <member name="M:QueryLogic.QueryUtility.GetBooleanFromRow(QueryLogic.Row,System.String)">
+            <summary>
+            Retrieves a boolean flag from a row map
+            </summary>
+            <param name="row">Current row map</param>
+            <param name="columnName">Name of database column</param>
+            <returns>Boolean value</returns>
+        </member>
+        <member name="T:QueryLogic.SqlFormat">
+            <summary>
+            Selects the correct format for conditional clause elements.
+            </summary>
+        </member>
+        <member name="M:QueryLogic.SqlFormat.Format(System.String)">
+            <summary>
+            Resolves the SQL formatting for the object type.
+            </summary>
+            <param name="searchTermType">The value of the object in the conditional clause</param>
+            <returns>The SQL formatting for the object type</returns>
+        </member>
+    </members>
+</doc>

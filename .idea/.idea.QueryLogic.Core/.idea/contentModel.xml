@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="QueryLogic" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Constants" t="Include">
+          <e p="DataTypes.cs" t="Include" />
+        </e>
+        <e p="Entities" t="Include">
+          <e p="ComplexM2M.cs" t="Include" />
+          <e p="DataMap.cs" t="Include" />
+          <e p="HashMaps.cs" t="Include" />
+          <e p="QueryException.cs" t="Include" />
+          <e p="Row.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IQueryBuilder.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="QueryLogic.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="QueryBuilder.cs" t="Include" />
+        <e p="QueryLogic.csproj" t="IncludeRecursive" />
+        <e p="QueryLogic.xml" t="Include" />
+        <e p="QueryUtility.cs" t="Include" />
+        <e p="Reference" t="Include">
+          <e p="Column.cs" t="Include" />
+          <e p="DataResolver.cs" t="Include" />
+          <e p="Metadata.cs" t="Include" />
+        </e>
+        <e p="Toolkit" t="Include">
+          <e p="SqlFormat.cs" t="Include" />
+        </e>
+      </e>
+      <e p="QueryLogic.Core.sln" t="IncludeFlat" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2019.1/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.1/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_QueryLogic.Core.-1143297458.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
+    <e p="C:\Users\gregfish\source\repos\QueryLogic.Core\QueryLogic" t="Include">
+      <e p="QueryLogic.xml" t="Include" />
+    </e>
+  </component>
+</project>

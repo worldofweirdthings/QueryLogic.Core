@@ -1,0 +1,61 @@
+﻿{
+  "version": "0.9.2",
+  "restore": {
+    "projectUniqueName": "/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/QueryLogic.csproj",
+    "projectName": "QueryLogic",
+    "projectPath": "/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/QueryLogic.csproj",
+    "outputPath": "/Users/gregfish/Documents/workspace/QueryLogic.Core/QueryLogic/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "sources": {
+      "/Users/gregfish/Documents/workspace/zz_NuGet": {},
+      "https://api.nuget.org/v3/index.json": {},
+      "https://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore-tooling/index.json": {},
+      "https://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore/index.json": {},
+      "https://dotnetfeed.blob.core.windows.net/aspnet-entityframeworkcore/index.json": {},
+      "https://dotnetfeed.blob.core.windows.net/aspnet-extensions/index.json": {},
+      "https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json": {},
+      "https://dotnetfeed.blob.core.windows.net/dotnet-windowsdesktop/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        },
+        "System.Data.SqlClient": {
+          "target": "Package",
+          "version": "[4.6.0, )"
+        },
+        "System.Threading.Tasks.Parallel": {
+          "target": "Package",
+          "version": "[4.3.0, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
